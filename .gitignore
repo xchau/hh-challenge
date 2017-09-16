@@ -9,6 +9,9 @@
 # production
 /build
 
+# with create-react-app-sass
+*.css
+
 # misc
 .DS_Store
 .env.local
