@@ -1,6 +1,14 @@
 $font-stack: Source Serif, serif;
 
+.app-container {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 100%;
+}
+
 .app-test {
-  color: #d10c7;
   font-family: $font-stack;
+  margin: 0;
 }

@@ -1,0 +1,40 @@
+$container-height: 70px;
+$logo-size: 40px;
+$font-stack: Source Serif, serif;
+$nav-font-size: 1.1rem;
+
+.center-all {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.topnav-container {
+  @extend .center-all;
+
+  background-color: #383838;
+  color: #fff;
+  height: $container-height;
+  width: 100%;
+}
+
+.topnav-content {
+  @extend .center-all;
+
+  justify-content: space-between;
+  width: 94%;
+}
+
+.topnav-logo {
+  height: $logo-size;
+}
+
+.topnav-searchbar {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: $font-stack;
+  font-size: $nav-font-size;
+  height: $container-height * 0.48;
+  padding: 0 8px;
+  width: 20%;
+}
