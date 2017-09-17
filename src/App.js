@@ -8,6 +8,7 @@ import {
 } from 'react-router-dom';
 
 import { TopNav } from './components/TopNav';
+import { SideNav } from './components/SideNav';
 
 class App extends Component {
   constructor(props) {
@@ -22,9 +23,12 @@ class App extends Component {
     return (
       <div className="app-container">
         <TopNav />
-        <Router>
-          
-        </Router>
+        <main className="app-main">
+          <SideNav />
+          <Router>
+
+          </Router>
+        </main>
       </div>
     );
   }

@@ -1,7 +1,9 @@
 $container-height: 70px;
+$nav-color: #383838;
 $logo-size: 40px;
 $font-stack: Source Serif, serif;
 $nav-font-size: 1.1rem;
+
 
 .center-all {
   align-items: center;
@@ -9,13 +11,19 @@ $nav-font-size: 1.1rem;
   justify-content: center;
 }
 
+.bottom-shadow {
+  box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.4);
+}
+
 .topnav-container {
   @extend .center-all;
+  @extend .bottom-shadow;
 
-  background-color: #383838;
+  background-color: $nav-color;
   color: #fff;
   height: $container-height;
   width: 100%;
+  z-index: 1;
 }
 
 .topnav-content {

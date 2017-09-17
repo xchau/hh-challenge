@@ -1,4 +1,4 @@
-$default-font-size: 16px;
+$default-fontsize: 16px;
 
 @font-face {
   font-family: 'Source Serif';
@@ -17,8 +17,8 @@ $default-font-size: 16px;
   font-weight: 800;
 }
 
-html, body {
-  font-size: $default-font-size;
+html, body, #root {
+  font-size: $default-fontsize;
   height: 100%;
   margin: 0;
   padding: 0;

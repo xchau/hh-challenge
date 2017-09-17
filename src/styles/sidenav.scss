@@ -1,0 +1,44 @@
+$sidenav-color: #e2e2e2;
+$button-color: #f6f6f6;
+$font-stack: Source Serif, serif;
+$sidenav-fontsize: 1rem;
+
+.theme-font {
+  font-size: $sidenav-fontsize;
+  font-family: $font-stack;
+}
+
+.right-shadow {
+  box-shadow: 2px 0 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+.sidenav-container {
+  @extend .theme-font;
+  @extend .right-shadow;
+
+  background-color: $sidenav-color;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  padding: 4% 0;
+  width: 200px;
+}
+
+.sidenav-random {
+  @extend .theme-font;
+
+  background-color: $button-color;
+  border: 1px solid #c2c2c2;
+  border-radius: 4px;
+  height: 40px;
+  margin: 0 15%;
+}
+
+.sidenav-random:hover {
+  border: 1px solid #b2b2b2;
+  cursor: pointer;
+}
+
+.sidenav-random:active {
+  transform: translateY(1px);
+}

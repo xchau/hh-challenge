@@ -5,10 +5,13 @@ $font-stack: Source Serif, serif;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  height: 100%;
+  min-height: 100%;
+  width: 100%;
 }
 
-.app-test {
-  font-family: $font-stack;
-  margin: 0;
+.app-main {
+  display: flex;
+  flex: 1 0 auto;
+  height: 100%;
+  width: 100%;
 }
