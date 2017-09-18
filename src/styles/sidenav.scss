@@ -21,7 +21,8 @@ $sidenav-fontsize: 1rem;
   flex-direction: column;
   min-height: 100%;
   padding: 4% 0;
-  width: 200px;
+  width: 240px;
+  z-index: 1;
 }
 
 .sidenav-random {
