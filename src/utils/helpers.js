@@ -12,7 +12,7 @@ export const createPageLis = (count, curPage) => {
       <Link
         className="pagination-link"
         key={i + 1}
-        to={`/colors?page=${i + 1}`}
+        to={`/colors/${i + 1}`}
       >
         {/* <li className={liClass} > */}
         <li>

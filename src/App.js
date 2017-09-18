@@ -65,34 +65,19 @@ class App extends Component {
               />
               {
                 this.state.pages ?
-                this.state.pages.map((route, idx) => {
-                  console.log(`/colors?page=${idx + 1}`);
-                  return <Route
-                    key={idx}
-                    exact
-                    path={`/colors?page=${idx + 1}`}
-                    component={(props) => (
-                      <Display {...props}
-                        curPage={idx + 1}
-                        pages={this.state.pages}
-                      />
-                    )}
-                  />
-                })
-                : <Route
-                    path="/colors"
-                    component={(props) => (
-                      <Test />
-                    )}
-                  />
+                this.state.pages.map((route, idx) => <Route
+                  key={idx}
+                  exact
+                  path={`/colors/${idx + 1}`}
+                  component={(props) => (
+                    <Display {...props}
+                      curPage={idx + 1}
+                      pages={this.state.pages}
+                    />
+                  )}
+                />)
+                : null
               }
-              {/* <Route
-                exact
-                path="/colors"
-                component={(props) => (
-                  <Test />
-                )}
-              /> */}
               <Route
                 path="*"
                 component={NoMatch}
