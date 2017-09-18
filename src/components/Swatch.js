@@ -9,7 +9,7 @@ const Swatch = (props) => {
         style={{ backgroundColor: props.hex }}
       ></div>
       <div className="swatch-label">
-
+        { props.hex }
       </div>
     </div>
   );

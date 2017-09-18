@@ -20,8 +20,10 @@ $sidenav-fontsize: 1rem;
   display: flex;
   flex-direction: column;
   min-height: 100%;
-  padding: 4% 0;
-  width: 240px;
+  min-width: 240px;
+  padding: 25px 0;
+  -webkit-transition: min-width 1s;
+  transition: min-width 1s;
   z-index: 1;
 }
 
@@ -42,4 +44,12 @@ $sidenav-fontsize: 1rem;
 
 .sidenav-random:active {
   transform: translateY(1px);
+}
+
+@media (max-width: 850px) {
+  .sidenav-container {
+    -webkit-transition: min-width 1s;
+    transition: min-width 1s;
+    min-width: 180px;
+  }
 }
