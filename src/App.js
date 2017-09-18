@@ -8,9 +8,9 @@ import {
   Switch,
 } from 'react-router-dom';
 
+import Display from './components/Display';
 import { TopNav } from './components/TopNav';
 import { SideNav } from './components/SideNav';
-import { Display } from './components/Display';
 import { NoMatch } from './components/NoMatch';
 // import { Test } from './components/Test';
 
@@ -57,24 +57,26 @@ class App extends Component {
                   <Display
                     {...props}
                     curPage={1}
+                    perPage={this.state.perPage}
                     pages={this.state.pages}
                   />
                 )}
               />
               {
                 this.state.pages ?
-                this.state.pages.map((route, idx) => <Route
-                  key={idx}
-                  exact
-                  path={`/colors/${idx + 1}`}
-                  component={(props) => (
-                    <Display {...props}
-                      curPage={idx + 1}
-                      pages={this.state.pages}
-                    />
-                  )}
-                />)
-                : null
+                  this.state.pages.map((route, idx) => <Route
+                    key={idx}
+                    exact
+                    path={`/colors/${idx + 1}`}
+                    component={(props) => (
+                      <Display {...props}
+                        curPage={idx + 1}
+                        perPage={this.state.perPage}
+                        pages={this.state.pages}
+                      />
+                    )}
+                  />)
+                  : null
               }
               <Route
                 path="*"
