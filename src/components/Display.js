@@ -10,7 +10,10 @@ const Display = (props) => {
       zzz
 
       <div className="display-pagination-container">
-        <Pagination pages={props.pages} />
+        <Pagination
+          curPage={props.curPage}
+          pages={props.pages}
+        />
       </div>
     </div>
   );

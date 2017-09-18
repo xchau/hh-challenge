@@ -1,21 +1,13 @@
 import React, { Component } from 'react';
 import '../styles/display.css';
 
+import { Link } from 'react-router-dom';
+
 class Pagination extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      // pages: null
-    };
-  }
-
-  componentWillReceiveProps(nextProps) {
-    // if (this.state.colorCount !== nextProps.colorCount) {
-    //   this.setState({
-    //     colorCount: nextProps.colorCount
-    //   });
-    // }
+    this.state = {};
   }
 
   componentDidMount() {
@@ -35,7 +27,19 @@ class Pagination extends Component {
       <ul className="pagination-ul">
         {
           this.props.pages ?
-            this.props.pages.map(item => item)
+            this.props.pages.map(page => {
+              let liClass = `pagination-link ${page === this.props.curPage ? 'pagination-active' : null}`;
+
+              return <Link
+                className={liClass}
+                key={page}
+                to={`/colors/${page}`}
+              >
+                <li>
+                  {page}
+                </li>
+              </Link>
+            })
             : null
         }
       </ul>

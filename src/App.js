@@ -45,7 +45,6 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state.pages);
     return (
       <div className="app-container">
         <TopNav />
