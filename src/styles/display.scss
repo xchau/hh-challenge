@@ -8,12 +8,10 @@
 }
 
 .display-container {
-  // align-items: center;
   display: flex;
   flex-direction: column;
   flex: 1 0 auto;
   margin: 0 auto;
-  // justify-content: flex-start;
   padding: 15px 15px 0 15px;
 }
 
@@ -21,6 +19,7 @@
   @include gridify(4, 10px);
 
   flex: 1 0 auto;
+  padding-top: 20px;
   width: 100%;
 }
 

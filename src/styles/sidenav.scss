@@ -48,8 +48,6 @@ $sidenav-fontsize: 1rem;
 
 @media (max-width: 850px) {
   .sidenav-container {
-    -webkit-transition: min-width 1s;
-    transition: min-width 1s;
     min-width: 180px;
   }
 }
