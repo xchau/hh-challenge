@@ -1,8 +1,8 @@
 $font-stack: Source Serif, serif;
 $border-radius: 10px;
 
-.swatch-shadow {
-  box-shadow: 1px 1px 1px 1px rgba(50, 50, 50, 0.1);
+@mixin swatch-shadow($opa) {
+  box-shadow: 1px 1px 1px 1px rgba(50, 50, 50, $opa);
 }
 
 .swatch-small {
@@ -10,15 +10,24 @@ $border-radius: 10px;
   margin-bottom: 30px;
   margin-left: 60px;
   width: 140px;
+
+  a {
+    color: #383838;
+    text-decoration: none;
+  }
 }
 
 .swatch-container {
-  @extend .swatch-shadow;
+  @include swatch-shadow(0.2);
 
   border: 1px solid #e8e8e8;
   border-radius: $border-radius;
   height: 100%;
   width: 100%;
+}
+
+.swatch-container:hover {
+  @include swatch-shadow(0.3);
 }
 
 .swatch-display {
@@ -31,7 +40,8 @@ $border-radius: 10px;
 .swatch-label {
   align-items: center;
   display: flex;
-  height: 20%;
   font-family: $font-stack;
-  justify-content: center;
+  height: 20%;
+  justify-content: flex-start;
+  padding-left: 10px;
 }

@@ -6,7 +6,7 @@ import axios from 'axios';
 import { Swatch } from './Swatch';
 import { Pagination } from './Pagination';
 
-class Display extends Component {
+class ListView extends Component {
   constructor(props) {
     super(props);
 
@@ -15,20 +15,40 @@ class Display extends Component {
     };
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     const start = this.props.perPage * (this.props.curPage - 1);
     const limit = this.props.perPage;
+    const colors = await JSON.parse(localStorage.getItem('colors'));
 
-    axios
-      .get(`http://localhost:8000/api/colors/${start}/${limit}`)
-      .then(res => {
-        this.setState({
-          colorsDisplayed: res.data
-        });
-      })
-      .catch(err => {
-        console.error(err);
+    if (colors.slice(start, start + limit).every(e => e)) {
+      console.log('from localStorage');
+      this.setState({
+        colorsDisplayed: colors.slice(start, start + limit)
       });
+    }
+    else {
+      console.log('from axios');
+      console.log(colors);
+      axios
+        .get(`http://localhost:8000/api/colors/${start}/${limit}`)
+        .then(res => {
+          this.setState({
+            colorsDisplayed: res.data
+          }, () => {
+             const newColors = JSON.stringify(
+               colors
+                .slice(0, start)
+                .concat(this.state.colorsDisplayed)
+                .concat(colors.slice(start + limit))
+            );
+
+            localStorage.setItem('colors', newColors);
+          });
+        })
+        .catch(err => {
+          console.error(err);
+        });
+    }
   }
 
   render() {
@@ -57,4 +77,4 @@ class Display extends Component {
   }
 };
 
-export default Display;
+export default ListView;

@@ -8,7 +8,7 @@ import {
   Switch,
 } from 'react-router-dom';
 
-import Display from './components/Display';
+import ListView from './components/ListView';
 import { TopNav } from './components/TopNav';
 import { SideNav } from './components/SideNav';
 import { NoMatch } from './components/NoMatch';
@@ -21,10 +21,17 @@ class App extends Component {
     super(props);
 
     this.state = {
+      curColors: null,
       colors: null,
       pages: null,
       perPage: 12,
     };
+
+    this.updateCurColors = this.updateCurColors.bind(this);
+  }
+
+  updateCurColors(curColors) {
+    this.setState({ curColors });
   }
 
   componentWillMount() {
@@ -35,7 +42,10 @@ class App extends Component {
         const pages = createPageLis(totalPages, this.state.curPage);
 
         this.setState({ pages }, () => {
-          // console.log(this.state.pages);
+          const colors = new Array(res.data.count);
+          colors.fill(null);
+
+          localStorage.setItem('colors', JSON.stringify(colors));
         });
       })
       .catch(err => {
@@ -54,11 +64,12 @@ class App extends Component {
               <Route
                 exact path="/"
                 component={(props) => (
-                  <Display
+                  <ListView
                     {...props}
                     curPage={1}
                     perPage={this.state.perPage}
                     pages={this.state.pages}
+                    updateCurColors={this.updateCurColors}
                   />
                 )}
               />
@@ -69,14 +80,18 @@ class App extends Component {
                     exact
                     path={`/colors/${idx + 1}`}
                     component={(props) => (
-                      <Display {...props}
+                      <ListView {...props}
                         curPage={idx + 1}
                         perPage={this.state.perPage}
                         pages={this.state.pages}
+                        updateCurColors={this.updateCurColors}
                       />
                     )}
                   />)
                   : null
+              }
+              {
+
               }
               <Route
                 path="*"
