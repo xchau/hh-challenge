@@ -7,14 +7,15 @@ const Display = (props) => {
   console.log(props);
   return (
     <div className="display-container">
-      zzz
-
-      <div className="display-pagination-container">
+      <div className="display-content">
+        zzz
+      </div>
+      <footer className="display-footer">
         <Pagination
           curPage={props.curPage}
           pages={props.pages}
         />
-      </div>
+      </footer>
     </div>
   );
 };

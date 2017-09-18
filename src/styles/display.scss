@@ -5,12 +5,15 @@
   flex: 1 0 auto;
   justify-content: flex-start;
   padding: 15px;
-  // position: relative;
 }
 
-.display-pagination-container {
-  // bottom: 0;
-  // position: absolute;
+.display-content {
+  // display: flex;
+  flex: 1 0 auto;
+  width: 100%;
+}
+
+.display-footer {
   height: 40px;
   width: 90%;
 }

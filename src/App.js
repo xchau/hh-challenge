@@ -4,7 +4,6 @@ import './styles/app.css';
 import axios from 'axios';
 import {
   BrowserRouter as Router,
-  Redirect,
   Route,
   Switch,
 } from 'react-router-dom';
@@ -13,7 +12,7 @@ import { TopNav } from './components/TopNav';
 import { SideNav } from './components/SideNav';
 import { Display } from './components/Display';
 import { NoMatch } from './components/NoMatch';
-import { Test } from './components/Test';
+// import { Test } from './components/Test';
 
 import { createPageLis } from './utils/helpers.js';
 
