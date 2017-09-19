@@ -5,16 +5,23 @@ $border-radius: 10px;
   box-shadow: 1px 1px 1px 1px rgba(50, 50, 50, $opa);
 }
 
+@mixin swatch-label($fSize, $pad) {
+  font-family: $font-stack;
+  font-size: $fSize;
+  padding-left: $pad;
+}
+
 .swatch-small {
   height: 160px;
+  margin: 0 auto;
   margin-bottom: 30px;
-  margin-left: 60px;
   width: 140px;
+}
 
-  a {
-    color: #383838;
-    text-decoration: none;
-  }
+.swatch-large {
+  height: 400px;
+  min-width: 300px;
+  width: 90%;
 }
 
 .swatch-container {
@@ -37,11 +44,20 @@ $border-radius: 10px;
   height: 80%;
 }
 
-.swatch-label {
+.swatch-label-small {
+  @include swatch-label(1rem, 10px);
+
   align-items: center;
   display: flex;
-  font-family: $font-stack;
   height: 20%;
   justify-content: flex-start;
-  padding-left: 10px;
+}
+
+.swatch-label-large {
+  @include swatch-label(1.8rem, 50px);
+
+  align-items: center;
+  display: flex;
+  height: 20%;
+  justify-content: flex-start;
 }

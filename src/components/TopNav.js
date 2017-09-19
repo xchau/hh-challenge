@@ -2,6 +2,7 @@ import React from 'react';
 import '../styles/topnav.css';
 import logo from '../assets/images/logo-symbol.svg';
 
+
 const TopNav = (props) => {
   return (
     <nav className="topnav-container">

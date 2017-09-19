@@ -1,3 +1,12 @@
+$button-color: #f6f6f6;
+$font-stack: Source Serif, serif;
+$display-fontsize: 1rem;
+
+.theme-font {
+  font-size: $display-fontsize;
+  font-family: $font-stack;
+}
+
 @mixin gridify($cols, $gap) {
   -moz-column-count: $cols;
 	-moz-column-gap: $gap;
@@ -15,11 +24,23 @@
   padding: 15px 15px 0 15px;
 }
 
-.display-content {
+.display-list {
   @include gridify(4, 10px);
 
   flex: 1 0 auto;
   padding-top: 20px;
+  width: 100%;
+
+  a {
+    color: #383838;
+    text-decoration: none;
+  }
+}
+
+.display-detail {
+  display: flex;
+  flex: 1 0 auto;
+  justify-content: center;
   width: 100%;
 }
 
@@ -30,6 +51,30 @@
   justify-content: center;
   margin-top: 10px;
   width: 90%;
+}
+
+.display-clear {
+  @extend .theme-font;
+
+  align-items: center;
+  background-color: $button-color;
+  border: 1px solid #c2c2c2;
+  border-radius: 4px;
+  display: flex;
+  height: 40px;
+  justify-content: center;
+  margin-top: -50px;
+  width: 100px;
+}
+
+
+.display-clear:hover {
+  border: 1px solid #b2b2b2;
+  cursor: pointer;
+}
+
+.display-clear:active {
+  transform: translateY(1px);
 }
 
 .pagination-ul {
