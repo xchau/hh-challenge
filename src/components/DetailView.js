@@ -7,19 +7,25 @@ class DetailView extends Component {
     super(props);
 
     this.redirectToColor = this.redirectToColor.bind(this);
+    this.redirectToHome = this.redirectToHome.bind(this);
   }
 
   redirectToColor() {
     this.props.getRandomColor()
       .then(res => {
-        this.props.history.push(`/colors/${res.data.hex}`)
+        this.props.history.push(`/colors/${res.data.hex}`);
       })
       .catch(err => {
         console.error(err);
       });
   }
 
+  redirectToHome() {
+    this.props.history.push('/');
+  }
+
   render() {
+    console.log(this.context);
     return (
       <main className="app-main">
         <SideNav redirectToColor={this.redirectToColor} />
@@ -32,14 +38,14 @@ class DetailView extends Component {
           <footer className="display-footer">
             <div
               className="display-clear"
-              onClick={this.props.history.goBack}
-              >
-                Clear
-              </div>
-            </footer>
-          </div>
-        </main>
-      );
+              onClick={this.redirectToHome}
+            >
+              Clear
+            </div>
+          </footer>
+        </div>
+      </main>
+    );
   }
 };
 

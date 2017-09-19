@@ -24,7 +24,7 @@ class ListView extends Component {
   redirectToColor() {
     this.props.getRandomColor()
       .then(res => {
-        this.props.history.push(`/colors/${res.data.hex}`)
+        this.props.history.replace(`/colors/${res.data.hex}`);
       })
       .catch(err => {
         console.error(err);
