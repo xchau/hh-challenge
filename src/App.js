@@ -13,7 +13,6 @@ import { TopNav } from './components/TopNav';
 import { SideNav } from './components/SideNav';
 import { DetailView } from './components/DetailView';
 import { NoMatch } from './components/NoMatch';
-// import { Test } from './components/Test';
 
 import { createPageLis } from './utils/helpers.js';
 
@@ -24,18 +23,9 @@ class App extends Component {
     this.state = {
       curColors: null,
       colors: null,
-      curPage: 1,
       pages: null,
       perPage: 12,
     };
-
-    this.updateCurPage = this.updateCurPage.bind(this);
-  }
-
-  updateCurPage(curPage) {
-    this.setState({ curPage }, () => {
-      console.log(this.state.curPage);
-    });
   }
 
   componentWillMount() {
@@ -73,7 +63,6 @@ class App extends Component {
                     curPage={1}
                     perPage={this.state.perPage}
                     pages={this.state.pages}
-                    updateCurPage={this.updateCurPage}
                   />
                 )}
               />
@@ -88,7 +77,6 @@ class App extends Component {
                         curPage={idx + 1}
                         perPage={this.state.perPage}
                         pages={this.state.pages}
-                        updateCurPage={this.updateCurPage}
                       />
                     )}
                   />)

@@ -18,8 +18,6 @@ class ListView extends Component {
   }
 
   async componentDidMount() {
-    // this.props.updateCurPage(this.props.curPage);
-
     const start = this.props.perPage * (this.props.curPage - 1);
     const limit = this.props.perPage;
     const colors = await JSON.parse(localStorage.getItem('colors'));
