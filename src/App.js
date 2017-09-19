@@ -43,6 +43,7 @@ class App extends Component {
     let searchTerm = hex;
 
     if (searchTerm[0] === '#') searchTerm = searchTerm.slice(1);
+    if (/[g-z]/ig.test(searchTerm)) return;
 
     axios
       .get(`http://localhost:8000/api/search?color=${searchTerm}`)
