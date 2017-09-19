@@ -14,7 +14,7 @@
 4. Refactor Sass to be: A) more responsive & B) cleaner.
 
 ## Relevant [Dongers](http://dongerlist.com)
-ԅ[ * ༎ຶ _ ༎ຶ * ]┐ \t
-୧| ͡ᵔ ﹏ ͡ᵔ |୨  \t
-乁| ･ 〰 ･ |ㄏ   \t
+ԅ[ * ༎ຶ _ ༎ຶ * ]┐ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+୧| ͡ᵔ ﹏ ͡ᵔ |୨  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+乁| ･ 〰 ･ |ㄏ   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 ᕦ༼ ✖ ਊ ✖ ༽ᕤ
