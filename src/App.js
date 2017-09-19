@@ -10,10 +10,12 @@ import {
 
 import ListView from './components/ListView';
 import DetailView from './components/DetailView';
+import FamilyView from './components/FamilyView';
 import TopNav from './components/TopNav';
 import { NoMatch } from './components/NoMatch';
 
-import { createPageLis } from './utils/helpers.js';
+import { colorFamilies } from './routes/families';
+import { createPageLis } from './utils/helpers';
 
 class App extends Component {
   constructor(props) {
@@ -128,6 +130,18 @@ class App extends Component {
                   )}
                 />)
                 : null
+            }
+            {
+              colorFamilies.map(color => <Route
+                key={color}
+                path={`/family/${color}`}
+                component={(props) => (
+                  <FamilyView {...props}
+                    family={color}
+                    getRandomColor={this.getRandomColor}
+                  />
+                )}
+              />)
             }
             <Route
               path="/colors/"

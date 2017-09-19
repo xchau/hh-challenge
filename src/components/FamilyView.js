@@ -9,13 +9,13 @@ import { SideNav } from './SideNav';
 import { Swatch } from './Swatch';
 import { Pagination } from './Pagination';
 
-class ListView extends Component {
+class FamilyView extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      colorsDisplayed: this.props.curColors,
-      stored: null
+      category: null,
+      colorsDisplayed: this.props.curColors
     };
 
     this.redirectToColor = this.redirectToColor.bind(this);
@@ -31,53 +31,20 @@ class ListView extends Component {
       });
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (this.state.colorsDisplayed !== nextProps.curColors) {
-      this.setState({ colorsDisplayed: nextProps.curColors });
-    }
-  }
-
-  componentWillMount() {
-    const colors = JSON.parse(localStorage.getItem('colors'));
-
-    this.setState({ stored: colors });
-  }
-
   componentDidMount() {
-    const start = this.props.perPage * (this.props.curPage - 1);
-    const limit = this.props.perPage;
+    const family = this.props.family;
 
-    let colors = this.state.stored ? this.state.stored : [];
-
-    if (colors.slice(start, start + limit).every(e => e)) {
-      this.setState({
-        colorsDisplayed: colors.slice(start, start + limit)
-      });
-    }
-    else if (!this.props.searching || !colors.length) {
-      axios
-        .get(`http://localhost:8000/api/colors/${start}/${limit}`)
-        .then(res => {
-          this.setState({
-            colorsDisplayed: res.data
-          })
-
-          const newColors = JSON.stringify(
-            colors
-              .slice(0, start)
-              .concat(res.data)
-              .concat(colors.slice(start + limit))
-          );
-
-          localStorage.setItem('colors', newColors);
-        })
-        .catch(err => {
-          console.error(err);
+    axios
+      .get(`http://localhost:8000/api/family?fam=${family}`)
+      .then(res => {
+        console.log(res.data.length);
+        this.setState({
+          colorsDisplayed: res.data
         });
-    }
-    else {
-      this.setState({ colorsDisplayed: this.props.curColors });
-    }
+      })
+      .catch(err => {
+        console.error(err);
+      });
   }
 
   render() {
@@ -101,6 +68,12 @@ class ListView extends Component {
                 </div>)
               : null
             }
+            {
+              this.state.colorsDisplayed?
+                !this.state.colorsDisplayed.length ?
+                  <div>No matches :(</div> : null
+                : null
+            }
           </div>
           <footer className="display-footer">
             <Pagination
@@ -114,4 +87,4 @@ class ListView extends Component {
   }
 };
 
-export default ListView;
+export default FamilyView;

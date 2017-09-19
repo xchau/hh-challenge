@@ -1,6 +1,8 @@
 import React from 'react';
 import '../styles/sidenav.css';
 
+import { Link } from 'react-router-dom';
+
 const SideNav = (props) => {
   return (
     <nav className="sidenav-container">
@@ -10,11 +12,37 @@ const SideNav = (props) => {
       >
         Random Color
       </button>
-      <ul>
-        <li>hi</li>
-        <li>hi</li>
-        <li>hi</li>
-        <li>hi</li>
+      <ul className="sidenav-ul">
+        <li>
+          <Link to="/family/red">
+            Red
+          </Link>
+        </li>
+        <li>
+          <Link to="/family/green">
+            Green
+          </Link>
+        </li>
+        <li>
+          <Link to="/family/blue">
+            Blue
+          </Link>
+        </li>
+        <li>
+          <Link to="/family/purple">
+            Purple
+          </Link>
+        </li>
+        <li>
+          <Link to="/family/yellow">
+            Yellow
+          </Link>
+        </li>
+        <li>
+          <Link to="/family/orange">
+            Orange
+          </Link>
+        </li>
       </ul>
     </nav>
   );
