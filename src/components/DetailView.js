@@ -3,6 +3,12 @@ import { Swatch } from './Swatch';
 import { SideNav } from './SideNav';
 
 class DetailView extends Component {
+  constructor(props) {
+    super(props);
+
+    this.redirectToColor = this.redirectToColor.bind(this);
+  }
+
   redirectToColor() {
     this.props.getRandomColor()
       .then(res => {
@@ -16,7 +22,7 @@ class DetailView extends Component {
   render() {
     return (
       <main className="app-main">
-        <SideNav redirectToColor={this.redirectToColor.bind(this)} />
+        <SideNav redirectToColor={this.redirectToColor} />
         <div className="display-container">
           <div className="display-detail">
             <div className="swatch-large">

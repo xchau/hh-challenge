@@ -35,6 +35,7 @@ $nav-font-size: 1.1rem;
 
 .topnav-logo {
   height: $logo-size;
+  margin-right: 20px;
 }
 
 .topnav-searchbar {
@@ -44,5 +45,4 @@ $nav-font-size: 1.1rem;
   font-size: $nav-font-size;
   height: $container-height * 0.48;
   padding: 0 8px;
-  width: 20%;
 }

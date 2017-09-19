@@ -14,7 +14,7 @@ class ListView extends Component {
     super(props);
 
     this.state = {
-      colorsDisplayed: null,
+      colorsDisplayed: this.props.curColors,
     };
 
     this.redirectToColor = this.redirectToColor.bind(this);
@@ -30,7 +30,21 @@ class ListView extends Component {
       });
   }
 
+  componentWillReceiveProps(nextProps) {
+    console.log(nextProps);
+    if (this.state.colorsDisplayed !== nextProps.curColors) {
+      this.setState({ colorsDisplayed: nextProps.curColors }, () => {
+        console.log('received new props');
+        console.log(this.state);
+      });
+    }
+    else {
+      console.log('???');
+    }
+  }
+
   async componentDidMount() {
+    console.log(this.props);
     const start = this.props.perPage * (this.props.curPage - 1);
     const limit = this.props.perPage;
     const colors = await JSON.parse(localStorage.getItem('colors'));
@@ -40,7 +54,7 @@ class ListView extends Component {
         colorsDisplayed: colors.slice(start, start + limit)
       });
     }
-    else {
+    else if (!this.props.searching) {
       axios
         .get(`http://localhost:8000/api/colors/${start}/${limit}`)
         .then(res => {
@@ -61,6 +75,9 @@ class ListView extends Component {
           console.error(err);
         });
     }
+    else {
+      this.setState({ colorsDisplayed: this.props.curColors });
+    }
   }
 
   render() {
@@ -68,7 +85,7 @@ class ListView extends Component {
       <main className="app-main">
         <SideNav redirectToColor={this.redirectToColor} />
         <div className="display-container">
-          <div className="display-list">
+          <div className="display-grid">
             {
               this.state.colorsDisplayed ?
                 this.state.colorsDisplayed.map(color => <div

@@ -10,7 +10,7 @@ import {
 
 import ListView from './components/ListView';
 import DetailView from './components/DetailView';
-import { TopNav } from './components/TopNav';
+import TopNav from './components/TopNav';
 import { NoMatch } from './components/NoMatch';
 
 import { createPageLis } from './utils/helpers.js';
@@ -25,9 +25,11 @@ class App extends Component {
       count: null,
       pages: null,
       perPage: 12,
+      searching: false
     };
 
     this.getRandomColor = this.getRandomColor.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   getRandomColor() {
@@ -37,16 +39,45 @@ class App extends Component {
     return axios.get(`http://localhost:8000/api/color/${randomNum}`);
   }
 
+  handleSubmit(hex) {
+    let searchTerm = hex;
+
+    if (searchTerm[0] === '#') searchTerm = searchTerm.slice(1);
+
+    axios
+      .get(`http://localhost:8000/api/search?color=${searchTerm}`)
+      .then(res => {
+        const totalPages = Math.ceil(res.data.length / this.state.perPage);
+        const pages = createPageLis(totalPages);
+
+        const old = this.state.curColors;
+
+        this.setState({
+          count: res.data.length,
+          curColors: res.data,
+          pages,
+          searching: true
+        }, () => {
+          console.log('submitted: ');
+          console.log(old, this.state.curColors);
+        });
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  }
+
   componentDidMount() {
     axios
       .get('http://localhost:8000/api/colors/count')
       .then(res => {
         const totalPages = Math.ceil(res.data.count / this.state.perPage);
-        const pages = createPageLis(totalPages, this.state.curPage);
+        const pages = createPageLis(totalPages);
 
         this.setState({
           count: res.data.count,
-          pages
+          pages,
+          searching: false
         }, () => {
           const colors = new Array(res.data.count);
           colors.fill(null);
@@ -62,7 +93,10 @@ class App extends Component {
   render() {
     return (
       <div className="app-container">
-        <TopNav />
+        <TopNav
+          searchTerm={this.state.search}
+          handleSubmit={this.handleSubmit}
+        />
         <Router>
           <Switch>
             <Route
@@ -70,10 +104,12 @@ class App extends Component {
               component={(props) => (
                 <ListView {...props}
                   count={this.state.count}
+                  curColors={this.state.curColors}
                   curPage={1}
                   getRandomColor={this.getRandomColor}
                   perPage={this.state.perPage}
                   pages={this.state.pages}
+                  searching={this.state.searching}
                 />
               )}
             />
@@ -86,10 +122,12 @@ class App extends Component {
                   component={(props) => (
                     <ListView {...props}
                       count={this.state.count}
+                      curColors={this.state.curColors}
                       curPage={idx + 1}
                       getRandomColor={this.getRandomColor}
                       perPage={this.state.perPage}
                       pages={this.state.pages}
+                      searching={this.state.searching}
                     />
                   )}
                 />)
