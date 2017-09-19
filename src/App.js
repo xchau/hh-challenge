@@ -37,7 +37,7 @@ class App extends Component {
     return axios.get(`http://localhost:8000/api/color/${randomNum}`);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     axios
       .get('http://localhost:8000/api/colors/count')
       .then(res => {
