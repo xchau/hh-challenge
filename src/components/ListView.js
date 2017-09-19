@@ -5,6 +5,7 @@ import axios from 'axios';
 
 import { Link } from 'react-router-dom';
 
+import { SideNav } from './SideNav';
 import { Swatch } from './Swatch';
 import { Pagination } from './Pagination';
 
@@ -13,8 +14,20 @@ class ListView extends Component {
     super(props);
 
     this.state = {
-      colorsDisplayed: null
+      colorsDisplayed: null,
     };
+
+    this.redirectToColor = this.redirectToColor.bind(this);
+  }
+
+  redirectToColor() {
+    this.props.getRandomColor()
+      .then(res => {
+        this.props.history.push(`/colors/${res.data.hex}`)
+      })
+      .catch(err => {
+        console.error(err);
+      });
   }
 
   async componentDidMount() {
@@ -52,31 +65,34 @@ class ListView extends Component {
 
   render() {
     return (
-      <div className="display-container">
-        <div className="display-list">
-          {
-            this.state.colorsDisplayed ?
-              this.state.colorsDisplayed.map(color => <div
-                className="swatch-small"
-                key={color.id}
-              >
-                <Link to={`/colors/${color.hex}`} >
-                  <Swatch
-                    hex={color.hex}
-                    size="small"
-                  />
-                </Link>
-              </div>)
-            : null
-          }
+      <main className="app-main">
+        <SideNav redirectToColor={this.redirectToColor} />
+        <div className="display-container">
+          <div className="display-list">
+            {
+              this.state.colorsDisplayed ?
+                this.state.colorsDisplayed.map(color => <div
+                  className="swatch-small"
+                  key={color.id}
+                >
+                  <Link to={`/colors/${color.hex}`} >
+                    <Swatch
+                      hex={color.hex}
+                      size="small"
+                    />
+                  </Link>
+                </div>)
+              : null
+            }
+          </div>
+          <footer className="display-footer">
+            <Pagination
+              curPage={this.props.curPage}
+              pages={this.props.pages}
+            />
+          </footer>
         </div>
-        <footer className="display-footer">
-          <Pagination
-            curPage={this.props.curPage}
-            pages={this.props.pages}
-          />
-        </footer>
-      </div>
+      </main>
     );
   }
 };

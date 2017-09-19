@@ -9,9 +9,8 @@ import {
 } from 'react-router-dom';
 
 import ListView from './components/ListView';
+import DetailView from './components/DetailView';
 import { TopNav } from './components/TopNav';
-import { SideNav } from './components/SideNav';
-import { DetailView } from './components/DetailView';
 import { NoMatch } from './components/NoMatch';
 
 import { createPageLis } from './utils/helpers.js';
@@ -23,9 +22,19 @@ class App extends Component {
     this.state = {
       curColors: null,
       colors: null,
+      count: null,
       pages: null,
       perPage: 12,
     };
+
+    this.getRandomColor = this.getRandomColor.bind(this);
+  }
+
+  getRandomColor() {
+    const max = this.state.count;
+    const randomNum = Math.floor(Math.random() * (max - 1) + 1);
+
+    return axios.get(`http://localhost:8000/api/color/${randomNum}`);
   }
 
   componentWillMount() {
@@ -35,7 +44,10 @@ class App extends Component {
         const totalPages = Math.ceil(res.data.count / this.state.perPage);
         const pages = createPageLis(totalPages, this.state.curPage);
 
-        this.setState({ pages }, () => {
+        this.setState({
+          count: res.data.count,
+          pages
+        }, () => {
           const colors = new Array(res.data.count);
           colors.fill(null);
 
@@ -51,48 +63,52 @@ class App extends Component {
     return (
       <div className="app-container">
         <TopNav />
-        <main className="app-main">
-          <SideNav />
-          <Router>
-            <Switch>
-              <Route
-                exact path="/"
-                component={(props) => (
-                  <ListView
-                    {...props}
-                    curPage={1}
-                    perPage={this.state.perPage}
-                    pages={this.state.pages}
-                  />
-                )}
-              />
-              {
-                this.state.pages ?
-                  this.state.pages.map((route, idx) => <Route
-                    key={idx}
-                    exact
-                    path={`/colors/${idx + 1}`}
-                    component={(props) => (
-                      <ListView {...props}
-                        curPage={idx + 1}
-                        perPage={this.state.perPage}
-                        pages={this.state.pages}
-                      />
-                    )}
-                  />)
-                  : null
-              }
-              <Route
-                path="/colors/"
-                component={DetailView}
-              />
-              <Route
-                path="*"
-                component={NoMatch}
-              />
-            </Switch>
-          </Router>
-        </main>
+        <Router>
+          <Switch>
+            <Route
+              exact path="/"
+              component={(props) => (
+                <ListView {...props}
+                  count={this.state.count}
+                  curPage={1}
+                  getRandomColor={this.getRandomColor}
+                  perPage={this.state.perPage}
+                  pages={this.state.pages}
+                />
+              )}
+            />
+            {
+              this.state.pages ?
+                this.state.pages.map((route, idx) => <Route
+                  key={idx}
+                  exact
+                  path={`/colors/${idx + 1}`}
+                  component={(props) => (
+                    <ListView {...props}
+                      count={this.state.count}
+                      curPage={idx + 1}
+                      getRandomColor={this.getRandomColor}
+                      perPage={this.state.perPage}
+                      pages={this.state.pages}
+                    />
+                  )}
+                />)
+                : null
+            }
+            <Route
+              path="/colors/"
+              component={(props) => (
+                <DetailView {...props}
+                  getRandomColor={this.getRandomColor}
+                />
+              )}
+            />
+            <Route
+              path="*"
+              component={NoMatch}
+            />
+          </Switch>
+        </Router>
       </div>
     );
   }

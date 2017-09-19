@@ -4,7 +4,10 @@ import '../styles/sidenav.css';
 const SideNav = (props) => {
   return (
     <nav className="sidenav-container">
-      <button className="sidenav-random">
+      <button
+        onClick={props.redirectToColor}
+        className="sidenav-random"
+      >
         Random Color
       </button>
       <ul>
