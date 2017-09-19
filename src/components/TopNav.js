@@ -11,6 +11,7 @@ class TopNav extends React.Component {
       search: ''
     };
 
+    this.handleClear = this.handleClear.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -25,6 +26,11 @@ class TopNav extends React.Component {
     e.preventDefault();
 
     this.props.handleSubmit(this.state.search);
+  }
+
+  handleClear() {
+    // not optimal
+    window.location.reload(true);
   }
 
   render() {
@@ -47,7 +53,16 @@ class TopNav extends React.Component {
                 type="text"
                 value={this.state.search}
               />
-              <span>X</span>
+              {
+                this.props.searching ?
+                  <div
+                    className="topnav-clear"
+                    onClick={this.handleClear}
+                  >
+                    &#10005;
+                  </div>
+                  : null
+              }
             </form>
           </div>
         </nav>

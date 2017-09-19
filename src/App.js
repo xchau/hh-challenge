@@ -47,19 +47,14 @@ class App extends Component {
     axios
       .get(`http://localhost:8000/api/search?color=${searchTerm}`)
       .then(res => {
-        const totalPages = Math.ceil(res.data.length / this.state.perPage);
+        const totalPages = Math.ceil(res.data.count / this.state.perPage);
         const pages = createPageLis(totalPages);
 
-        const old = this.state.curColors;
-
         this.setState({
-          count: res.data.length,
-          curColors: res.data,
+          count: res.data.count,
+          curColors: res.data.colors,
           pages,
-          searching: true
-        }, () => {
-          console.log('submitted: ');
-          console.log(old, this.state.curColors);
+          searching: true,
         });
       })
       .catch(err => {
@@ -76,8 +71,7 @@ class App extends Component {
 
         this.setState({
           count: res.data.count,
-          pages,
-          searching: false
+          pages
         }, () => {
           const colors = new Array(res.data.count);
           colors.fill(null);
@@ -94,8 +88,9 @@ class App extends Component {
     return (
       <div className="app-container">
         <TopNav
-          searchTerm={this.state.search}
           handleSubmit={this.handleSubmit}
+          searchTerm={this.state.search}
+          searching={this.state.searching}
         />
         <Router>
           <Switch>

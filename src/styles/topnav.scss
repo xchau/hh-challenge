@@ -38,6 +38,10 @@ $nav-font-size: 1.1rem;
   margin-right: 20px;
 }
 
+.topnav-form {
+  position: relative;
+}
+
 .topnav-searchbar {
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -45,4 +49,17 @@ $nav-font-size: 1.1rem;
   font-size: $nav-font-size;
   height: $container-height * 0.48;
   padding: 0 8px;
+}
+
+.topnav-clear {
+  color: #e23f5c;
+  padding: 2px;
+  position: absolute;
+  right: 5px;
+  top: 6px;
+  z-index: 3;
+}
+
+.topnav-clear:hover {
+  cursor: pointer;
 }
