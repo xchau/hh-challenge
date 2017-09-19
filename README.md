@@ -2,9 +2,9 @@
 ### Minh Chau | contact@mnchau.com
 
 ## Links
-[Challenge App](https://xchau-hh-challenge.herokuapp.com)
-[Server Endpoint]( https://hh-server.herokuapp.com)
-[Server Repo](https://github.com/xchau/hh-server)
+* [Challenge App](https://xchau-hh-challenge.herokuapp.com)
+* [Server Endpoint]( https://hh-server.herokuapp.com)
+* [Server Repo](https://github.com/xchau/hh-server)
 
 ## Future Development
 1. Place top navbar component into router for more fluid and intuitive navigation.
@@ -14,7 +14,7 @@
 4. Refactor Sass to be: A) more responsive & B) cleaner.
 
 ## Relevant [Dongers](http://dongerlist.com)
-ԅ[ * ༎ຶ _ ༎ຶ * ]┐
-୧| ͡ᵔ ﹏ ͡ᵔ |୨
-乁| ･ 〰 ･ |ㄏ
+ԅ[ * ༎ຶ _ ༎ຶ * ]┐ \t
+୧| ͡ᵔ ﹏ ͡ᵔ |୨  \t
+乁| ･ 〰 ･ |ㄏ   \t
 ᕦ༼ ✖ ਊ ✖ ༽ᕤ
