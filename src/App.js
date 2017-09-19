@@ -38,7 +38,7 @@ class App extends Component {
     const max = this.state.count;
     const randomNum = Math.floor(Math.random() * (max - 1) + 1);
 
-    return axios.get(`http://localhost:8000/api/color/${randomNum}`);
+    return axios.get(`https://hh-server.herokuapp.com/api/color/${randomNum}`);
   }
 
   handleSubmit(hex) {
@@ -48,7 +48,7 @@ class App extends Component {
     if (/[g-z]/ig.test(searchTerm)) return;
 
     axios
-      .get(`http://localhost:8000/api/search?color=${searchTerm}`)
+      .get(`https://hh-server.herokuapp.com/api/search?color=${searchTerm}`)
       .then(res => {
         const totalPages = Math.ceil(res.data.count / this.state.perPage);
         const pages = createPageLis(totalPages);
@@ -67,7 +67,7 @@ class App extends Component {
 
   componentDidMount() {
     axios
-      .get('http://localhost:8000/api/colors/count')
+      .get('https://hh-server.herokuapp.com/api/colors/count')
       .then(res => {
         const totalPages = Math.ceil(res.data.count / this.state.perPage);
         const pages = createPageLis(totalPages);

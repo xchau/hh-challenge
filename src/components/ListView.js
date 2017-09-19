@@ -56,7 +56,7 @@ class ListView extends Component {
     }
     else if (!this.props.searching || !colors.length) {
       axios
-        .get(`http://localhost:8000/api/colors/${start}/${limit}`)
+        .get(`https://hh-server.herokuapp.com/api/colors/${start}/${limit}`)
         .then(res => {
           this.setState({
             colorsDisplayed: res.data

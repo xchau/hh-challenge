@@ -35,7 +35,7 @@ class FamilyView extends Component {
     const family = this.props.family;
 
     axios
-      .get(`http://localhost:8000/api/family?fam=${family}`)
+      .get(`https://hh-server.herokuapp.com/api/family?fam=${family}`)
       .then(res => {
         console.log(res.data.length);
         this.setState({
