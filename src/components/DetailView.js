@@ -1,8 +1,6 @@
 import React from 'react';
 import { Swatch } from './Swatch';
 
-import { Link } from 'react-router-dom';
-
 const DetailView = (props) => {
   console.log(props);
   return (
