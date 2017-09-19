@@ -7,9 +7,9 @@ $display-fontsize: 1rem;
   font-family: $font-stack;
 }
 
-@mixin gridify($cols, $gap) {
+@mixin gridify($cols, $colSize, $gap) {
   display: grid;
-  grid-template-columns: repeat(4, 200px);
+  grid-template-columns: repeat($cols, $colSize);
   grid-gap: $gap;
 }
 
@@ -18,13 +18,12 @@ $display-fontsize: 1rem;
   flex-direction: column;
   margin: 0 auto;
   padding: 15px 15px 0 15px;
-  width: 78%;
+  width: 80%;
 }
 
 .display-grid {
-  @include gridify(20%, 1%);
+  @include gridify(4, 20%, 30px);
 
-  align-self: center;
   height: 100%;
   padding-top: 20px;
   padding-bottom: 50px;
@@ -47,7 +46,6 @@ $display-fontsize: 1rem;
   display: flex;
   height: 40px;
   justify-content: center;
-  // height: 50px;
   margin-top: -50px;
   width: 90%;
 }
@@ -105,8 +103,25 @@ $display-fontsize: 1rem;
   pointer-events: none;
 }
 
-@media (max-width: 850px) {
+
+@media (max-width: 800px) {
   .display-container {
-    width: 80%;
+    min-width: 70%;
+  }
+
+  .display-grid {
+    @include gridify(3, 30%, 30px);
+  }
+}
+
+@media (max-width: 600px) {
+  .display-grid {
+    @include gridify(2, 48%, 30px);
+  }
+}
+
+@media (max-width: 390px) {
+  .display-grid {
+    @include gridify(1, 98%, 30px);
   }
 }

@@ -19,6 +19,16 @@ const SideNav = (props) => {
           </Link>
         </li>
         <li>
+          <Link to="/family/orange">
+            Orange
+          </Link>
+        </li>
+        <li>
+          <Link to="/family/yellow">
+            Yellow
+          </Link>
+        </li>
+        <li>
           <Link to="/family/green">
             Green
           </Link>
@@ -34,13 +44,13 @@ const SideNav = (props) => {
           </Link>
         </li>
         <li>
-          <Link to="/family/yellow">
-            Yellow
+          <Link to="/family/brown">
+            Brown
           </Link>
         </li>
         <li>
-          <Link to="/family/orange">
-            Orange
+          <Link to="/family/gray">
+            Gray
           </Link>
         </li>
       </ul>

@@ -4,5 +4,7 @@ export const colorFamilies = [
   'green',
   'purple',
   'yellow',
-  'orange'
+  'orange',
+  'brown',
+  'gray'
 ];

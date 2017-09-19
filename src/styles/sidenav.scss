@@ -20,7 +20,7 @@ $sidenav-fontsize: 1rem;
   display: flex;
   flex-direction: column;
   min-height: 100%;
-  min-width: 22%;
+  min-width: 20%;
   padding: 25px 0;
   -webkit-transition: min-width 1s;
   transition: min-width 1s;
@@ -46,14 +46,22 @@ $sidenav-fontsize: 1rem;
   transform: translateY(1px);
 }
 
-@media (max-width: 850px) {
-  .sidenav-container {
-    width: 20%;
+.sidenav-ul {
+  font-size: 1.2rem;
+  list-style: none;
+
+  li {
+    margin: 10px 0;
+  }
+
+  a {
+    color: #383838;
+    text-decoration: none;
   }
 }
 
 @media (max-width: 850px) {
   .sidenav-container {
-    display: none;
+    min-width: 30%;
   }
 }
