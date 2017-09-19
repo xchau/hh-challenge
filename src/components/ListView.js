@@ -15,6 +15,7 @@ class ListView extends Component {
 
     this.state = {
       colorsDisplayed: this.props.curColors,
+      stored: null
     };
 
     this.redirectToColor = this.redirectToColor.bind(this);
@@ -43,33 +44,39 @@ class ListView extends Component {
     }
   }
 
-  async componentDidMount() {
-    console.log(this.props);
+  componentWillMount() {
+    const colors = JSON.parse(localStorage.getItem('colors'));
+
+    this.setState({ stored: colors });
+  }
+
+  componentDidMount() {
     const start = this.props.perPage * (this.props.curPage - 1);
     const limit = this.props.perPage;
-    const colors = await JSON.parse(localStorage.getItem('colors'));
+
+    let colors = this.state.stored ? this.state.stored : [];
 
     if (colors.slice(start, start + limit).every(e => e)) {
       this.setState({
         colorsDisplayed: colors.slice(start, start + limit)
       });
     }
-    else if (!this.props.searching) {
+    else if (!this.props.searching || !colors.length) {
       axios
         .get(`http://localhost:8000/api/colors/${start}/${limit}`)
         .then(res => {
           this.setState({
             colorsDisplayed: res.data
-          }, () => {
-             const newColors = JSON.stringify(
-               colors
-                .slice(0, start)
-                .concat(this.state.colorsDisplayed)
-                .concat(colors.slice(start + limit))
-            );
+          })
 
-            localStorage.setItem('colors', newColors);
-          });
+          const newColors = JSON.stringify(
+            colors
+              .slice(0, start)
+              .concat(res.data)
+              .concat(colors.slice(start + limit))
+          );
+
+          localStorage.setItem('colors', newColors);
         })
         .catch(err => {
           console.error(err);
