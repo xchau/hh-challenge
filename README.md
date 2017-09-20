@@ -11,7 +11,10 @@
   * Improve search mechanism in general
 2. Create more links/buttons to aid users traverse app.
 3. Refactor code to combine List & Family Views.
-4. Refactor Sass to be: A) more responsive & B) cleaner.
+  * Add pagination for Family View.
+4. Add tint/shades in detail view.
+5. Refactor Sass to be: A) more responsive & B) cleaner.
+
 
 ## Relevant [Dongers](http://dongerlist.com)
 ԅ[ * ༎ຶ _ ༎ຶ * ]┐ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
