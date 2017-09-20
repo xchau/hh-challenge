@@ -6,6 +6,15 @@
 * [Server Endpoint]( https://hh-server.herokuapp.com)
 * [Server Repo](https://github.com/xchau/hh-server)
 
+## Instructions
+1. `yarn`
+2. `yarn start`
+
+## Notable Tech
+* create-react-app
+* React Router v4
+* Sass
+
 ## Future Development
 1. Place top navbar component into router for more fluid and intuitive navigation.
   * Improve search mechanism in general
