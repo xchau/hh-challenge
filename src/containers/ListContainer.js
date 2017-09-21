@@ -30,8 +30,6 @@ class ListContainer extends Component {
     const url = family ?
       `http://localhost:8000/api/colors?page=${curPage}&&limit=${perPage}&&family=${family}` : `http://localhost:8000/api/colors?page=${curPage}&&limit=${perPage}`;
 
-      console.log(url);
-
     axios
       .get(url)
       .then(res => {
@@ -70,7 +68,7 @@ class ListContainer extends Component {
     // update current page based on url
     if (path[1] === 'colors' && path[2]) {
       this.setState({
-        curPage: Number.parseInt(path[2])
+        curPage: Number.parseInt(path[2], 10)
       }, () => {
         // make call to appropriate endpoint
         if (path[1] === 'family') {

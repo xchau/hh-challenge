@@ -9,6 +9,7 @@ import {
 } from 'react-router-dom';
 
 import ListContainer from './containers/ListContainer';
+import DetailContainer from './containers/DetailContainer';
 import { NoMatch } from './components/NoMatch';
 
 import { colorFamilies } from './routes/families';
@@ -33,6 +34,10 @@ class App extends Component {
                 />
               ))
             }
+            <Route
+              path="/colors/"
+              component={DetailContainer}
+            />
           </Switch>
         </Router>
       </div>
