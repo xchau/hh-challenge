@@ -16,9 +16,10 @@ class ListContainer extends Component {
       perPage: 12,
       totalPages: null,
       searchTerm: '',
+      searching: false
     };
 
-    this.handleClear = this.handleClear.bind(this);
+    this.handleClearSearch = this.handleClearSearch.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.getColors = this.getColors.bind(this);
     this.getRandomColor = this.getRandomColor.bind(this);
@@ -62,8 +63,12 @@ class ListContainer extends Component {
       });
   }
 
-  handleClear() {
-    // window.location.reload(true);
+  handleClearSearch() {
+    this.getColors();
+    this.setState({
+      searchTerm: '',
+      searching: false
+    });
   }
 
   handleChange(e) {
@@ -73,8 +78,21 @@ class ListContainer extends Component {
   handleSubmit(e) {
     e.preventDefault();
 
-    console.log(this.state);
-    // this.props.handleSubmit(this.state.search);
+    let hex = this.state.searchTerm;
+
+    if (hex[0] === '#') hex = hex.slice(1);
+
+    axios
+      .get(`http://localhost:8000/api/search?color=${hex}`)
+      .then(res => {
+        this.setState({
+          colorsToDisplay: res.data.colors,
+          searching: true
+        });
+      })
+      .catch(err => {
+        console.error(err);
+      });
   }
 
   componentDidMount() {
@@ -120,7 +138,7 @@ class ListContainer extends Component {
               />
               <div
                 className="topnav-clear"
-                onClick={this.handleClear}
+                onClick={this.handleClearSearch}
               >
                 &#10005;
               </div>
@@ -134,11 +152,14 @@ class ListContainer extends Component {
               colorsToDisplay={this.state.colorsToDisplay}
             />
             <div className="display-footer">
-              <Pagination
-                curPage={this.state.curPage}
-                totalPages={this.state.totalPages}
-                perPage={this.state.perPage}
-              />
+              {
+                this.state.searching ? null :
+                <Pagination
+                  curPage={this.state.curPage}
+                  totalPages={this.state.totalPages}
+                  perPage={this.state.perPage}
+                />
+              }
             </div>
           </div>
         </div>
