@@ -50,7 +50,6 @@ export const generateTint = (rgbObj, step) => {
     if (rgb.b >= 0 - step) {
       rgb.b += step;
     }
-    console.log(rgb, step);
   }
   else {
     for (const channel in rgb) {
