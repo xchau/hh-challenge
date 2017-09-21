@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './styles/app.css';
+import './styles/styles.css';
 
 import axios from 'axios';
 import {
@@ -8,7 +8,7 @@ import {
   Switch,
 } from 'react-router-dom';
 
-import ListView from './components/ListView';
+import ListContainer from './containers/ListContainer';
 import DetailView from './components/DetailView';
 import FamilyView from './components/FamilyView';
 import TopNav from './components/TopNav';
@@ -22,138 +22,31 @@ class App extends Component {
     super(props);
 
     this.state = {
-      curColors: null,
-      colors: null,
-      count: null,
-      pages: null,
+      curPage: 1,
       perPage: 12,
-      searching: false
     };
 
-    this.getRandomColor = this.getRandomColor.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
 
-  getRandomColor() {
-    const max = this.state.count;
-    const randomNum = Math.floor(Math.random() * (max - 1) + 1);
-
-    return axios.get(`https://hh-server.herokuapp.com/api/color/${randomNum}`);
-  }
-
-  handleSubmit(hex) {
-    let searchTerm = hex;
-
-    if (searchTerm[0] === '#') searchTerm = searchTerm.slice(1);
-    if (/[g-z]/ig.test(searchTerm)) return;
-
-    axios
-      .get(`https://hh-server.herokuapp.com/api/search?color=${searchTerm}`)
-      .then(res => {
-        const totalPages = Math.ceil(res.data.count / this.state.perPage);
-        const pages = createPageLis(totalPages);
-
-        this.setState({
-          count: res.data.count,
-          curColors: res.data.colors,
-          pages,
-          searching: true,
-        });
-      })
-      .catch(err => {
-        console.error(err);
-      });
   }
 
   componentDidMount() {
-    axios
-      .get('https://hh-server.herokuapp.com/api/colors/count')
-      .then(res => {
-        const totalPages = Math.ceil(res.data.count / this.state.perPage);
-        const pages = createPageLis(totalPages);
 
-        this.setState({
-          count: res.data.count,
-          pages
-        }, () => {
-          const colors = new Array(res.data.count);
-          colors.fill(null);
-
-          localStorage.setItem('colors', JSON.stringify(colors));
-        });
-      })
-      .catch(err => {
-        console.error(err);
-      });
   }
 
   render() {
     return (
       <div className="app-container">
-        <TopNav
-          handleSubmit={this.handleSubmit}
-          searchTerm={this.state.search}
-          searching={this.state.searching}
-        />
         <Router>
           <Switch>
             <Route
               exact path="/"
               component={(props) => (
-                <ListView {...props}
-                  count={this.state.count}
-                  curColors={this.state.curColors}
-                  curPage={1}
-                  getRandomColor={this.getRandomColor}
+                <ListContainer {...props}
+                  curPage={this.state.curPage}
                   perPage={this.state.perPage}
-                  pages={this.state.pages}
-                  searching={this.state.searching}
+                  // isFamilyView={false}
                 />
               )}
-            />
-            {
-              this.state.pages ?
-                this.state.pages.map((route, idx) => <Route
-                  key={idx}
-                  exact
-                  path={`/colors/${idx + 1}`}
-                  component={(props) => (
-                    <ListView {...props}
-                      count={this.state.count}
-                      curColors={this.state.curColors}
-                      curPage={idx + 1}
-                      getRandomColor={this.getRandomColor}
-                      perPage={this.state.perPage}
-                      pages={this.state.pages}
-                      searching={this.state.searching}
-                    />
-                  )}
-                />)
-                : null
-            }
-            {
-              colorFamilies.map(color => <Route
-                key={color}
-                path={`/family/${color}`}
-                component={(props) => (
-                  <FamilyView {...props}
-                    family={color}
-                    getRandomColor={this.getRandomColor}
-                  />
-                )}
-              />)
-            }
-            <Route
-              path="/colors/"
-              component={(props) => (
-                <DetailView {...props}
-                  getRandomColor={this.getRandomColor}
-                />
-              )}
-            />
-            <Route
-              path="*"
-              component={NoMatch}
             />
           </Switch>
         </Router>

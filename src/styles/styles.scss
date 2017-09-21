@@ -1,0 +1,229 @@
+$font-stack: Source Serif, serif;
+$logo-size: 40px;
+
+.app-container {
+  display: flex;
+  min-height: 100%;
+  width: 100%;
+}
+
+.app-layout {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.app-main {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+.app-display {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  padding-bottom: 0;
+  width: 80%;
+}
+
+//////// **** DISPLAY STYLES **** ////////
+
+@mixin gridify($cols, $colSize, $gap) {
+  display: grid;
+  grid-template-columns: repeat($cols, $colSize);
+  grid-gap: $gap;
+}
+
+.display-list-container {
+  @include gridify(4, 22%, 10px);
+
+  a {
+    color: #383838;
+    text-decoration: none;
+  }
+}
+
+.display-footer {
+  align-items: center;
+  display: flex;
+  height: 60px;
+  justify-content: center;
+  margin-top: -15px;
+  width: 90%;
+}
+
+//////// **** END TOP NAV **** ////////
+//////// **** SWATCH STYLES **** ////////
+$swatch-radius: 10px;
+
+@mixin swatch-shadow($opa) {
+  box-shadow: 1px 1px 1px 1px rgba(50, 50, 50, $opa);
+}
+
+@mixin swatch-label($fSize, $pad) {
+  font-family: $font-stack;
+  font-size: $fSize;
+  padding-left: $pad;
+}
+
+.swatch-small {
+  height: 160px;
+  margin: 0 20px;
+  margin-bottom: 30px;
+  width: 140px;
+}
+
+.swatch-container {
+  @include swatch-shadow(0.2);
+
+  border: 1px solid #e8e8e8;
+  border-radius: $swatch-radius;
+  height: 100%;
+  width: 100%;
+}
+
+.swatch-container:hover {
+  @include swatch-shadow(0.3);
+}
+
+.swatch-display {
+  border-top-left-radius: $swatch-radius;
+  border-top-right-radius: $swatch-radius;
+  padding: 5px;
+  height: 80%;
+}
+
+.swatch-label-small {
+  @include swatch-label(1rem, 10px);
+
+  align-items: center;
+  display: flex;
+  height: 20%;
+  justify-content: flex-start;
+}
+
+.swatch-label-large {
+  @include swatch-label(1.8rem, 50px);
+
+  align-items: center;
+  display: flex;
+  height: 20%;
+  justify-content: flex-start;
+}
+
+//////// **** END SWATCH STYLES **** ////////
+//////// **** TOP NAV STYLES **** ////////
+$nav-color: #383838;
+$nav-height: 70px;
+$nav-fontsize: 1.1rem;
+
+.center-all {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.bottom-shadow {
+  box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.4);
+}
+
+.topnav-container {
+  @extend .center-all;
+  @extend .bottom-shadow;
+
+  background-color: $nav-color;
+  color: #fff;
+  height: $nav-height;
+  width: 100%;
+  z-index: 2;
+}
+
+.topnav-content {
+  @extend .center-all;
+
+  justify-content: space-between;
+  width: 94%;
+}
+
+.topnav-logo {
+  height: $logo-size;
+  margin-right: 20px;
+}
+
+.topnav-form {
+  position: relative;
+}
+
+.topnav-searchbar {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: $font-stack;
+  font-size: $nav-fontsize;
+  height: $nav-height * 0.48;
+  padding: 0 8px;
+}
+
+.topnav-clear {
+  color: #e23f5c;
+  padding: 2px;
+  position: absolute;
+  right: 5px;
+  top: 6px;
+  z-index: 3;
+}
+
+.topnav-clear:hover {
+  cursor: pointer;
+}
+
+//////// **** END TOP NAV **** ////////
+//////// **** SIDE NAV STYLES **** ////////
+$sidenav-color: #e2e2e2;
+
+.sidenav-container {
+  background-color: $sidenav-color;
+  box-shadow: 2px 0 2px 1px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  width: 20%;
+  padding: 25px 0;
+  z-index: 1;
+}
+
+//////// **** END SIDE NAV **** ////////
+//////// **** PAGINATION STYLES **** ////////
+
+.pagination-ul {
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+
+  li {
+    text-align: center;
+    width: 22px;
+  }
+}
+
+.pagination-link {
+  color: #2f2f2f;
+  list-style: none;
+  text-decoration: none;
+}
+
+.pagination-link:visited {
+  color: #2f2f2f;
+}
+
+.pagination-active {
+  cursor: default;
+  border-bottom: 1px solid #000;
+  font-weight: 800;
+  pointer-events: none;
+}
+
+//////// **** END PAGINATION **** ////////

@@ -1,127 +1,127 @@
-$button-color: #f6f6f6;
-$font-stack: Source Serif, serif;
-$display-fontsize: 1rem;
-
-.theme-font {
-  font-size: $display-fontsize;
-  font-family: $font-stack;
-}
-
-@mixin gridify($cols, $colSize, $gap) {
-  display: grid;
-  grid-template-columns: repeat($cols, $colSize);
-  grid-gap: $gap;
-}
-
-.display-container {
-  display: flex;
-  flex-direction: column;
-  margin: 0 auto;
-  padding: 15px 15px 0 15px;
-  width: 80%;
-}
-
-.display-grid {
-  @include gridify(4, 20%, 30px);
-
-  height: 100%;
-  padding-top: 20px;
-  padding-bottom: 50px;
-
-  a {
-    color: #383838;
-    text-decoration: none;
-  }
-}
-
-.display-detail {
-  display: flex;
-  flex: 1 0 auto;
-  justify-content: center;
-  width: 100%;
-}
-
-.display-footer {
-  align-items: center;
-  display: flex;
-  height: 40px;
-  justify-content: center;
-  margin-top: -50px;
-  width: 90%;
-}
-
-.display-clear {
-  @extend .theme-font;
-
-  align-items: center;
-  background-color: $button-color;
-  border: 1px solid #c2c2c2;
-  border-radius: 4px;
-  display: flex;
-  height: 40px;
-  justify-content: center;
-  margin-top: -50px;
-  width: 100px;
-}
-
-
-.display-clear:hover {
-  border: 1px solid #b2b2b2;
-  cursor: pointer;
-}
-
-.display-clear:active {
-  transform: translateY(1px);
-}
-
-.pagination-ul {
-  display: flex;
-  justify-content: center;
-  margin: 0;
-  padding: 0;
-
-  li {
-    text-align: center;
-    width: 22px;
-  }
-}
-
-.pagination-link {
-  color: #2f2f2f;
-  list-style: none;
-  text-decoration: none;
-}
-
-.pagination-link:visited {
-  color: #2f2f2f;
-}
-
-.pagination-active {
-  cursor: default;
-  border-bottom: 1px solid #000;
-  font-weight: 800;
-  pointer-events: none;
-}
-
-
-@media (max-width: 800px) {
-  .display-container {
-    min-width: 70%;
-  }
-
-  .display-grid {
-    @include gridify(3, 30%, 30px);
-  }
-}
-
-@media (max-width: 600px) {
-  .display-grid {
-    @include gridify(2, 48%, 30px);
-  }
-}
-
-@media (max-width: 390px) {
-  .display-grid {
-    @include gridify(1, 98%, 30px);
-  }
-}
+// $button-color: #f6f6f6;
+// $font-stack: Source Serif, serif;
+// $display-fontsize: 1rem;
+//
+// .theme-font {
+//   font-size: $display-fontsize;
+//   font-family: $font-stack;
+// }
+//
+// @mixin gridify($cols, $colSize, $gap) {
+//   display: grid;
+//   grid-template-columns: repeat($cols, $colSize);
+//   grid-gap: $gap;
+// }
+//
+// .display-container {
+//   display: flex;
+//   flex-direction: column;
+//   margin: 0 auto;
+//   padding: 15px 15px 0 15px;
+//   width: 80%;
+// }
+//
+// .display-grid {
+//   @include gridify(4, 20%, 30px);
+//
+//   height: 100%;
+//   padding-top: 20px;
+//   padding-bottom: 50px;
+//
+//   a {
+//     color: #383838;
+//     text-decoration: none;
+//   }
+// }
+//
+// .display-detail {
+//   display: flex;
+//   flex: 1 0 auto;
+//   justify-content: center;
+//   width: 100%;
+// }
+//
+// .display-footer {
+//   align-items: center;
+//   display: flex;
+//   height: 40px;
+//   justify-content: center;
+//   margin-top: -50px;
+//   width: 90%;
+// }
+//
+// .display-clear {
+//   @extend .theme-font;
+//
+//   align-items: center;
+//   background-color: $button-color;
+//   border: 1px solid #c2c2c2;
+//   border-radius: 4px;
+//   display: flex;
+//   height: 40px;
+//   justify-content: center;
+//   margin-top: -50px;
+//   width: 100px;
+// }
+//
+//
+// .display-clear:hover {
+//   border: 1px solid #b2b2b2;
+//   cursor: pointer;
+// }
+//
+// .display-clear:active {
+//   transform: translateY(1px);
+// }
+//
+// .pagination-ul {
+//   display: flex;
+//   justify-content: center;
+//   margin: 0;
+//   padding: 0;
+//
+//   li {
+//     text-align: center;
+//     width: 22px;
+//   }
+// }
+//
+// .pagination-link {
+//   color: #2f2f2f;
+//   list-style: none;
+//   text-decoration: none;
+// }
+//
+// .pagination-link:visited {
+//   color: #2f2f2f;
+// }
+//
+// .pagination-active {
+//   cursor: default;
+//   border-bottom: 1px solid #000;
+//   font-weight: 800;
+//   pointer-events: none;
+// }
+//
+//
+// @media (max-width: 800px) {
+//   .display-container {
+//     min-width: 70%;
+//   }
+//
+//   .display-grid {
+//     @include gridify(3, 30%, 30px);
+//   }
+// }
+//
+// @media (max-width: 600px) {
+//   .display-grid {
+//     @include gridify(2, 48%, 30px);
+//   }
+// }
+//
+// @media (max-width: 390px) {
+//   .display-grid {
+//     @include gridify(1, 98%, 30px);
+//   }
+// }
