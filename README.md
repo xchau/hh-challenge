@@ -24,7 +24,7 @@
 4. Add tint/shades in detail view.
 5. ~~Refactor Sass to be: A) more responsive & B) cleaner.~~ (sort of)
 
-## New Features V2
+### New Features V2
 1. All components now reside within router for easier maneuvering and future improvement.
 2. Data flows more unanimously.
 3. A few quality of life improvements (eg: clicking logo goes back home)
