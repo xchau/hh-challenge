@@ -53,10 +53,18 @@ $clear-color: #f6f6f6;
 }
 
 .display-detail-container {
+  align-items: center;
   display: flex;
+  flex-direction: column;
   height: 100%;
   justify-content: center;
   width: 100%;
+}
+
+.display-tint-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .display-nomatch-container {
@@ -81,7 +89,6 @@ $clear-color: #f6f6f6;
   font-family: $font-stack;
   height: 40px;
   justify-content: center;
-  margin-top: -50px;
   width: 100px;
 }
 
@@ -120,14 +127,16 @@ $swatch-radius: 10px;
 .swatch-small {
   height: 160px;
   margin: 0 20px;
-  margin-bottom: 30px;
+  margin: 15px;
+  margin-bottom: 20px;
   width: 140px;
 }
 
 .swatch-large {
-  height: 400px;
+  height: 380px;
+  margin-bottom: 15px;
   min-width: 300px;
-  width: 90%;
+  width: 80%;
 }
 
 .swatch-container {
