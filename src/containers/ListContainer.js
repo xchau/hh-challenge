@@ -30,7 +30,7 @@ class ListContainer extends Component {
     const curPage = this.state.curPage;
     const perPage = this.state.perPage;
     const url = family ?
-      `http://localhost:8000/api/colors?page=${curPage}&&limit=${perPage}&&family=${family}` : `http://localhost:8000/api/colors?page=${curPage}&&limit=${perPage}`;
+      `https://hh-server.herokuapp.com/api/colors?page=${curPage}&&limit=${perPage}&&family=${family}` : `https://hh-server.herokuapp.com/api/colors?page=${curPage}&&limit=${perPage}`;
 
     axios
       .get(url)
@@ -54,7 +54,7 @@ class ListContainer extends Component {
     let randId = Math.floor(Math.random() * (this.state.count - 1) + 1);
 
     axios
-      .get(`http://localhost:8000/api/color/${randId}`)
+      .get(`https://hh-server.herokuapp.com/api/color/${randId}`)
       .then(color => {
         this.props.history.push(`/colors/${color.data.hex}`);
       })
@@ -83,7 +83,7 @@ class ListContainer extends Component {
     if (hex[0] === '#') hex = hex.slice(1);
 
     axios
-      .get(`http://localhost:8000/api/search?color=${hex}`)
+      .get(`https://hh-server.herokuapp.com/api/search?color=${hex}`)
       .then(res => {
         this.setState({
           colorsToDisplay: res.data.colors,

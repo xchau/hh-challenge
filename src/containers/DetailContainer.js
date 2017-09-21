@@ -20,12 +20,12 @@ class DetailContainer extends Component {
   getRandomColor() {
     let randId = Math.floor(Math.random() * (this.state.count - 1) + 1);
     axios
-      .get('http://localhost:8000/api/colors')
+      .get('https://hh-server.herokuapp.com/api/colors')
       .then(res => {
         randId = Math.floor(Math.random() * (res.data.count - 1) + 1);
 
         return axios
-          .get(`http://localhost:8000/api/color/${randId}`)
+          .get(`https://hh-server.herokuapp.com/api/color/${randId}`)
       })
       .then(color => {
         this.props.history.push(`/colors/${color.data.hex}`);
