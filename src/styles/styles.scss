@@ -42,6 +42,7 @@ $clear-color: #f6f6f6;
   @include gridify(4, 22%, 10px);
 
   height: 100%;
+  min-width: 80%;
 
   a {
     color: #383838;

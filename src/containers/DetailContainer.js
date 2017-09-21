@@ -40,11 +40,16 @@ class DetailContainer extends Component {
   }
 
   componentDidMount() {
-    this.props.history.listen((location, action) => {
-      this.setState({
-        color: location.hash
+    if (this.props.location.hash[0] !== '#') {
+      this.props.history.replace('/nomatch');
+    }
+    else {
+      this.props.history.listen((location, action) => {
+        this.setState({
+          color: location.hash
+        });
       });
-    });
+    }
   }
 
   componentWillUnmount() {

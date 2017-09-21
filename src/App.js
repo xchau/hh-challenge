@@ -11,7 +11,7 @@ import ListContainer from './containers/ListContainer';
 import DetailContainer from './containers/DetailContainer';
 import { NoMatch } from './components/NoMatch';
 
-import { colorFamilies } from './routes/families';
+import { colorFamilies } from './routes/colorFamilies';
 import { totalPages } from './routes/totalPages';
 
 class App extends Component {
@@ -29,6 +29,16 @@ class App extends Component {
                 <Route
                   key={num}
                   path={`/colors/${num}`}
+                  component={ListContainer}
+                />
+              ))
+            }
+            {
+              colorFamilies.map(fam => (
+                <Route
+                  key={fam}
+                  exact
+                  path={`/family/${fam}`}
                   component={ListContainer}
                 />
               ))
