@@ -15,15 +15,21 @@
 * React Router v4
 * Sass
 
-## Future Development
-1. Place top navbar component into router for more fluid and intuitive navigation.
-  * Improve search mechanism in general
+## Future Development V1
+1. ~~Place top navbar component into router for more fluid and intuitive navigation.~~
+  * ~~Improve search mechanism in general~~
 2. Create more links/buttons to aid users traverse app.
-3. Refactor code to combine List & Family Views.
+3. ~~Refactor code to combine List & Family Views.~~
   * Add pagination for Family View.
 4. Add tint/shades in detail view.
-5. Refactor Sass to be: A) more responsive & B) cleaner.
+5. ~~Refactor Sass to be: A) more responsive & B) cleaner.~~ (sort of)
 
+## New Features V2
+1. All components now reside within router for easier maneuvering and future improvement.
+2. Data flows more unanimously.
+3. A few quality of life improvements (eg: clicking logo goes back home)
+
+## NOTE: V1 is still available on V1 branch
 
 ## Relevant [Dongers](http://dongerlist.com)
 乁| ･ 〰 ･ |ㄏ     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
