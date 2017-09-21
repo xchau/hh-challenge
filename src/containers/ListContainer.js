@@ -31,8 +31,6 @@ class ListContainer extends Component {
     const url = family ?
       `http://localhost:8000/api/colors?page=${curPage}&&limit=${perPage}&&family=${family}` : `http://localhost:8000/api/colors?page=${curPage}&&limit=${perPage}`;
 
-    console.log(url);
-
     axios
       .get(url)
       .then(res => {
@@ -83,7 +81,7 @@ class ListContainer extends Component {
     const path = this.props.location.pathname.split('/');
 
     // update current page indicator based on url
-    if (path[1] === 'colors' || path[1] === 'family' && path[2]) {
+    if ((path[1] === 'colors' || path[1] === 'family') && path[2]) {
       this.setState({
         curPage: Number.parseInt(path[2], 10) || 1
       }, () => {

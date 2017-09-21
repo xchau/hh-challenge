@@ -4,6 +4,7 @@ $logo-size: 40px;
 .app-container {
   display: flex;
   min-height: 100%;
+  min-width: 520px;
   width: 100%;
 }
 
@@ -43,6 +44,7 @@ $clear-color: #f6f6f6;
 
   height: 100%;
   min-width: 80%;
+  padding-left: 30px;
 
   a {
     color: #383838;
@@ -314,3 +316,65 @@ $sidenav-fontsize: 1rem;
 }
 
 //////// **** END PAGINATION **** ////////
+//////// **** RESPONSIVE STYLES **** ////////
+
+@media (max-width: 860px) {
+  .display-list-container {
+    @include gridify(3, 30%, 10px);
+  }
+}
+
+@media (max-width: 660px) {
+  .display-list-container {
+    @include gridify(2, 48%, 10px);
+  }
+
+  .display-footer {
+    width: 80%;
+
+    ul li {
+      font-size: 0.7rem;
+    }
+  }
+
+  .sidenav-container {
+    width: 30%;
+  }
+
+  .sidenav-random {
+    font-size: $sidenav-fontsize * 0.9;
+  }
+
+  .sidenav-ul {
+    padding-left: 20px;
+
+    li {
+      font-size: $sidenav-fontsize * 0.9;
+    }
+  }
+
+  .app-display {
+    width: 70%;
+  }
+}
+
+@media (max-width: 570px) {
+  .display-list-container {
+    @include gridify(1, 98%, 0px);
+  }
+
+  .swatch-small {
+    height: 220px;
+    width: 200px;
+  }
+
+  .sidenav-container {
+    width: 35%;
+  }
+
+  .app-display {
+    width: 65%;
+  }
+}
+
+//////// **** END RESPONSIVE **** ////////
