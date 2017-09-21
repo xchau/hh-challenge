@@ -29,7 +29,7 @@
 2. Data flows more unanimously.
 3. A few quality of life improvements (eg: clicking logo goes back home)
 
-## NOTE: V1 is still available on V1 branch
+## NOTE: V1 is still available on [V1 branch](https://github.com/xchau/hh-challenge/tree/v1)
 
 ## Relevant [Dongers](http://dongerlist.com)
 乁| ･ 〰 ･ |ㄏ     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
