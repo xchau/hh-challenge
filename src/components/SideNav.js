@@ -6,7 +6,7 @@ const SideNav = (props) => {
   return (
     <nav className="sidenav-container">
       <button
-        onClick={props.redirectToColor}
+        onClick={props.getRandomColor}
         className="sidenav-random"
       >
         Random Color

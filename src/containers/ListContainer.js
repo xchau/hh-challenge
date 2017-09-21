@@ -21,6 +21,7 @@ class ListContainer extends Component {
     this.handleClear = this.handleClear.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.getColors = this.getColors.bind(this);
+    this.getRandomColor = this.getRandomColor.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -39,8 +40,22 @@ class ListContainer extends Component {
 
         this.setState({
           colorsToDisplay: res.data.colors,
+          count: res.data.count,
           totalPages
         });
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  }
+
+  getRandomColor() {
+    let randId = Math.floor(Math.random() * (this.state.count - 1) + 1);
+
+    axios
+      .get(`http://localhost:8000/api/color/${randId}`)
+      .then(color => {
+        this.props.history.push(`/colors/${color.data.hex}`);
       })
       .catch(err => {
         console.error(err);
@@ -65,7 +80,7 @@ class ListContainer extends Component {
   componentDidMount() {
     const path = this.props.location.pathname.split('/');
 
-    // update current page based on url
+    // update current page indicator based on url
     if (path[1] === 'colors' && path[2]) {
       this.setState({
         curPage: Number.parseInt(path[2], 10)
@@ -112,7 +127,8 @@ class ListContainer extends Component {
             </form>
         </TopNav>
         <div className="app-main">
-          <SideNav />
+          <SideNav
+            getRandomColor={this.getRandomColor} />
           <div className="app-display">
             <ListView
               colorsToDisplay={this.state.colorsToDisplay}

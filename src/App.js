@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './styles/styles.css';
 
-import axios from 'axios';
 import {
   BrowserRouter as Router,
   Route,
@@ -37,6 +36,10 @@ class App extends Component {
             <Route
               path="/colors/"
               component={DetailContainer}
+            />
+            <Route
+              path="*"
+              component={NoMatch}
             />
           </Switch>
         </Router>

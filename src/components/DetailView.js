@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
+
 import { Swatch } from './Swatch';
-import { SideNav } from './SideNav';
 
 const DetailView = (props) => {
   return (

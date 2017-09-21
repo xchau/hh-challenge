@@ -8,6 +8,7 @@ const TopNav = (props) => {
         <img
           alt="logo"
           className="topnav-logo"
+          onClick={props.goHome}
           src={logo}
         />
         { props.children }
