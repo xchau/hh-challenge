@@ -37,8 +37,16 @@ $logo-size: 40px;
   grid-gap: $gap;
 }
 
+.display-container {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
 .display-list-container {
   @include gridify(4, 22%, 10px);
+
+  height: 100%;
 
   a {
     color: #383838;

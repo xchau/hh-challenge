@@ -5,15 +5,10 @@ import { Link } from 'react-router-dom';
 
 const Pagination = (props) => {
   const pages = [];
-  const totalPages = Math.ceil(
-    props.count / props.perPage
-  );
 
-  for (let i = 0; i < totalPages; i++) {
+  for (let i = 0; i < props.totalPages; i++) {
     pages.push(i + 1);
   }
-
-  console.log(props);
 
   return (
     <ul className="pagination-ul">

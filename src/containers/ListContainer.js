@@ -11,9 +11,11 @@ class ListContainer extends Component {
     super(props);
 
     this.state = {
+      curPage: null,
       colorsToDisplay: null,
+      perPage: 12,
+      totalPages: null,
       searchTerm: '',
-      count: null,
     };
 
     this.handleClear = this.handleClear.bind(this);
@@ -23,18 +25,23 @@ class ListContainer extends Component {
   }
 
   getColors(family) {
-    const curPage = this.props.curPage;
-    const perPage = this.props.perPage;
+    const curPage = this.state.curPage;
+    const perPage = this.state.perPage;
     const url = family ?
       `http://localhost:8000/api/colors?page=${curPage}&&limit=${perPage}&&family=${family}` : `http://localhost:8000/api/colors?page=${curPage}&&limit=${perPage}`;
+
+      console.log(url);
 
     axios
       .get(url)
       .then(res => {
-        console.log(res);
+        const totalPages =  Math.ceil(
+          res.data.count / this.state.perPage
+        );
+
         this.setState({
           colorsToDisplay: res.data.colors,
-          count: res.data.count
+          totalPages
         });
       })
       .catch(err => {
@@ -60,11 +67,26 @@ class ListContainer extends Component {
   componentDidMount() {
     const path = this.props.location.pathname.split('/');
 
-    if (path[1] === 'family') {
-      this.getColors(path[3]);
+    // update current page based on url
+    if (path[1] === 'colors' && path[2]) {
+      this.setState({
+        curPage: Number.parseInt(path[2])
+      }, () => {
+        // make call to appropriate endpoint
+        if (path[1] === 'family') {
+          this.getColors(path[3]);
+        }
+        else {
+          this.getColors();
+        }
+      });
     }
-    else {
-      this.getColors();
+    else if (!path[0]) {
+      this.setState({
+        curPage: 1
+      }, () => {
+        this.getColors();
+      });
     }
   }
 
@@ -99,9 +121,9 @@ class ListContainer extends Component {
             />
             <div className="display-footer">
               <Pagination
-                curPage={this.props.curPage}
-                count={this.state.count}
-                perPage={this.props.perPage}
+                curPage={this.state.curPage}
+                totalPages={this.state.totalPages}
+                perPage={this.state.perPage}
               />
             </div>
           </div>
