@@ -21,7 +21,7 @@
 2. Create more links/buttons to aid users traverse app.
 3. ~~Refactor code to combine List & Family Views.~~
   * Add pagination for Family View.
-4. Add tint/shades in detail view.
+4. ~~Add tint/shades in detail view~~.
 5. ~~Refactor Sass to be: A) more responsive & B) cleaner.~~ (sort of)
 
 ## New Features V2
